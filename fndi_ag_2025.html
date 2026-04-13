@@ -1,0 +1,321 @@
+
+<link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;500;600;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --navy:#1a2f4e;--navy-light:#243d63;--blue:#3a7bd5;--blue-light:#5a93e8;
+  --cream:#f5f5f0;--white:#ffffff;--border:#d0d8e4;
+  --text:#1a2f4e;--muted:#6b7fa0;--line:rgba(26,47,78,0.1);
+  --success:#2a7f5b;--warn:#c07a10;--info:#1560a8;
+}
+body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--text)}
+.wrap{max-width:900px;margin:0 auto}
+
+/* HEADER */
+.hdr{background:var(--navy);color:#fff;padding:1.5rem 1.25rem 0}
+.hdr-top{display:flex;align-items:center;gap:1rem;padding-bottom:1rem}
+.logo-box{display:flex;flex-direction:column;border-left:3px solid var(--blue);padding-left:.75rem}
+.logo-title{font-family:'Raleway',sans-serif;font-size:2rem;font-weight:700;letter-spacing:.12em;color:#fff;line-height:1}
+.logo-sub{font-size:.62rem;font-weight:400;letter-spacing:.08em;color:rgba(255,255,255,.6);text-transform:uppercase;margin-top:.2rem}
+.hdr-info{margin-left:auto;text-align:right;font-size:.78rem;color:rgba(255,255,255,.7);line-height:1.6}
+.hdr-info strong{color:#fff;font-size:.85rem}
+.tabs{display:flex;gap:0;margin-top:1rem}
+.tab{padding:.65rem 1.1rem;font-family:'Raleway',sans-serif;font-size:.8rem;font-weight:600;letter-spacing:.04em;color:rgba(255,255,255,.55);border:none;background:none;cursor:pointer;border-top:2px solid transparent;text-transform:uppercase;transition:all .2s;white-space:nowrap}
+.tab.active{color:#fff;border-top-color:var(--blue)}
+.tab:hover:not(.active){color:rgba(255,255,255,.85)}
+.live-dot{width:6px;height:6px;background:#e74c3c;border-radius:50%;display:inline-block;margin-right:5px;animation:pulse 1.5s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
+
+/* PANELS */
+.panel{display:none;padding:1.5rem 1.25rem;min-height:400px}
+.panel.active{display:block}
+
+/* SECTION LABEL */
+.sec-lbl{font-family:'Raleway',sans-serif;font-size:.65rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);margin-bottom:1rem;padding-bottom:.5rem;border-bottom:1px solid var(--border)}
+
+/* PROGRAMME TIMELINE */
+.timeline{position:relative;padding-left:4rem}
+.timeline::before{content:'';position:absolute;left:3rem;top:0;bottom:0;width:1px;background:var(--border)}
+.tl-item{position:relative;margin-bottom:1.25rem}
+.tl-time{position:absolute;left:-4rem;width:3.2rem;text-align:right;font-size:.72rem;font-weight:500;color:var(--muted);top:.8rem}
+.tl-dot{position:absolute;left:-1.6rem;top:.85rem;width:10px;height:10px;border-radius:50%;background:var(--border);border:2px solid var(--white);z-index:1}
+.tl-dot.pleniere{background:var(--blue)}
+.tl-dot.pause{background:var(--muted)}
+.tl-dot.repas{background:var(--success)}
+.tl-dot.atelier{background:var(--warn)}
+.tl-card{background:var(--white);border:0.5px solid var(--border);border-radius:8px;padding:.8rem 1rem;border-left:3px solid var(--border);transition:all .2s}
+.tl-card.pleniere{border-left-color:var(--blue)}
+.tl-card.pause{border-left-color:var(--muted)}
+.tl-card.repas{border-left-color:var(--success)}
+.tl-card.atelier{border-left-color:var(--warn)}
+.tl-card.now{background:#eef3fc;border-left-color:var(--blue);box-shadow:0 0 0 2px rgba(58,123,213,.15)}
+.tl-now-badge{font-size:.6rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--blue);margin-bottom:.2rem}
+.tl-card h3{font-family:'Raleway',sans-serif;font-size:.88rem;font-weight:600;color:var(--text)}
+.tl-card p{font-size:.78rem;color:var(--muted);margin-top:.2rem;line-height:1.5}
+.tl-tag{display:inline-block;font-size:.6rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;padding:2px 7px;border-radius:4px;margin-top:.35rem}
+.tag-pleniere{background:#dee9f9;color:#1560a8}
+.tag-pause{background:#e8eaed;color:#4a5568}
+.tag-repas{background:#d4edde;color:#1a5e3a}
+.tag-atelier{background:#faecd4;color:#7a4f0a}
+
+/* PRINT BTN */
+.print-btn{display:inline-flex;align-items:center;gap:.4rem;font-size:.75rem;font-family:'Raleway',sans-serif;font-weight:600;letter-spacing:.04em;text-transform:uppercase;padding:.45rem .9rem;border:0.5px solid var(--border);border-radius:6px;background:var(--white);color:var(--muted);cursor:pointer;margin-bottom:1.25rem}
+.print-btn:hover{background:var(--navy);color:#fff;border-color:var(--navy)}
+
+/* INTERVENANTS */
+.filters{display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:1.25rem}
+.filt-btn{font-size:.72rem;font-family:'Raleway',sans-serif;font-weight:600;letter-spacing:.04em;text-transform:uppercase;padding:.35rem .8rem;border:0.5px solid var(--border);border-radius:20px;background:var(--white);color:var(--muted);cursor:pointer}
+.filt-btn.active{background:var(--navy);color:#fff;border-color:var(--navy)}
+.speakers-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:1rem}
+.spk-card{background:var(--white);border:0.5px solid var(--border);border-radius:10px;padding:1.25rem 1rem;text-align:center}
+.spk-avatar{width:58px;height:58px;border-radius:50%;background:var(--navy);color:#fff;display:flex;align-items:center;justify-content:center;font-family:'Raleway',sans-serif;font-size:1rem;font-weight:600;margin:0 auto .85rem;letter-spacing:.05em}
+.spk-name{font-family:'Raleway',sans-serif;font-size:.88rem;font-weight:600;color:var(--text)}
+.spk-role{font-size:.75rem;color:var(--muted);margin-top:.15rem}
+.spk-spec{font-size:.65rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--blue);margin-top:.4rem}
+.spk-bio{font-size:.73rem;color:var(--muted);margin-top:.6rem;line-height:1.55;text-align:left}
+.spk-tag{display:inline-block;font-size:.58rem;font-weight:600;letter-spacing:.07em;text-transform:uppercase;padding:2px 7px;border-radius:4px;background:#dee9f9;color:#1560a8;margin-top:.5rem}
+
+/* PARTENAIRES */
+.partners-section{margin-bottom:1.75rem}
+.partners-section h3{font-family:'Raleway',sans-serif;font-size:.72rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:.9rem;display:flex;align-items:center;gap:.5rem}
+.partners-section h3::after{content:'';flex:1;height:1px;background:var(--border)}
+.partners-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:.75rem}
+.partner-card{background:var(--white);border:0.5px solid var(--border);border-radius:8px;padding:1rem;text-align:center}
+.partner-logo{width:50px;height:50px;border-radius:6px;background:var(--navy);color:#fff;display:flex;align-items:center;justify-content:center;font-family:'Raleway',sans-serif;font-size:.65rem;font-weight:700;letter-spacing:.04em;margin:0 auto .7rem;text-align:center;line-height:1.2}
+.partner-name{font-family:'Raleway',sans-serif;font-size:.8rem;font-weight:600;color:var(--text)}
+.partner-domain{font-size:.68rem;color:var(--muted);margin-top:.15rem}
+.partner-link{font-size:.65rem;color:var(--blue);text-decoration:none;display:inline-block;margin-top:.4rem}
+.badge-principal{display:inline-block;font-size:.55rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:2px 7px;border-radius:3px;background:#1a2f4e;color:#fff;margin-bottom:.4rem}
+
+/* ARTICLES */
+.pub-btn{display:inline-flex;align-items:center;gap:.4rem;font-size:.8rem;font-family:'Raleway',sans-serif;font-weight:600;letter-spacing:.03em;text-transform:uppercase;padding:.55rem 1.1rem;border:none;border-radius:6px;background:var(--blue);color:#fff;cursor:pointer;margin-bottom:1.25rem}
+.pub-btn:hover{background:#2d6cc0}
+.article-form{background:var(--white);border:0.5px solid var(--border);border-radius:10px;padding:1.25rem;margin-bottom:1.5rem}
+.form-row{margin-bottom:.85rem}
+.form-row label{display:block;font-size:.72rem;font-weight:600;letter-spacing:.05em;text-transform:uppercase;color:var(--muted);margin-bottom:.35rem}
+.form-row input,.form-row textarea{width:100%;font-family:'DM Sans',sans-serif;font-size:.85rem;color:var(--text);padding:.55rem .8rem;border:0.5px solid var(--border);border-radius:6px;background:var(--cream);outline:none}
+.form-row textarea{resize:vertical;min-height:80px}
+.form-row input:focus,.form-row textarea:focus{border-color:var(--blue)}
+.form-actions{display:flex;gap:.6rem;margin-top:.85rem}
+.btn-submit{font-family:'Raleway',sans-serif;font-size:.78rem;font-weight:600;padding:.5rem 1.1rem;border:none;border-radius:6px;background:var(--navy);color:#fff;cursor:pointer}
+.btn-cancel{font-family:'Raleway',sans-serif;font-size:.78rem;font-weight:600;padding:.5rem 1.1rem;border:0.5px solid var(--border);border-radius:6px;background:none;color:var(--muted);cursor:pointer}
+.articles-feed{display:flex;flex-direction:column;gap:1rem}
+.article-card{background:var(--white);border:0.5px solid var(--border);border-radius:10px;padding:1.25rem;border-left:3px solid var(--blue)}
+.art-meta{display:flex;align-items:center;gap:.75rem;margin-bottom:.6rem}
+.art-time{font-size:.7rem;font-weight:600;letter-spacing:.05em;color:var(--muted);background:var(--cream);padding:2px 8px;border-radius:4px}
+.art-author{font-size:.7rem;color:var(--muted)}
+.live-badge{font-size:.6rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:2px 8px;border-radius:4px;background:#fde8e8;color:#c0392b}
+.article-card h3{font-family:'Raleway',sans-serif;font-size:.95rem;font-weight:600;color:var(--text);margin-bottom:.4rem}
+.article-card p{font-size:.8rem;color:var(--muted);line-height:1.6}
+.empty-state{text-align:center;padding:3rem 1rem;color:var(--muted);font-size:.85rem}
+.empty-icon{font-size:2rem;margin-bottom:.75rem;opacity:.4}
+
+@media(max-width:600px){
+  .logo-title{font-size:1.5rem}
+  .hdr-info{display:none}
+  .tabs{overflow-x:auto;-webkit-overflow-scrolling:touch}
+  .tab{font-size:.7rem;padding:.6rem .8rem}
+  .timeline{padding-left:3rem}
+  .tl-time{left:-3rem;font-size:.65rem}
+}
+
+@media print{
+  .hdr .tabs,.print-btn,.panel:not(#p-programme){display:none!important}
+  .panel#p-programme{display:block!important}
+  body{background:#fff}
+  .tl-card{break-inside:avoid}
+}
+</style>
+
+<div class="wrap">
+  <div class="hdr">
+    <div class="hdr-top">
+      <div class="logo-box">
+        <div class="logo-title">FNDI</div>
+        <div class="logo-sub">Fédération Nationale des Dessinateurs Indépendants</div>
+      </div>
+      <div class="hdr-info">
+        <strong>Assemblée Générale 2025</strong><br>
+        14 Juin 2025 — Lyon<br>
+        Centre de Congrès de Lyon
+      </div>
+    </div>
+    <div class="tabs">
+      <button class="tab active" onclick="showTab('programme')">Programme</button>
+      <button class="tab" onclick="showTab('intervenants')">Intervenants</button>
+      <button class="tab" onclick="showTab('partenaires')">Partenaires</button>
+      <button class="tab" onclick="showTab('articles')"><span class="live-dot"></span>Live</button>
+    </div>
+  </div>
+
+  <!-- PROGRAMME -->
+  <div id="p-programme" class="panel active">
+    <button class="print-btn" onclick="window.print()">&#9113; Imprimer le programme</button>
+    <div class="sec-lbl">Déroulé de la journée</div>
+    <div class="timeline" id="timeline"></div>
+  </div>
+
+  <!-- INTERVENANTS -->
+  <div id="p-intervenants" class="panel">
+    <div class="sec-lbl">Les intervenants</div>
+    <div class="filters" id="filters"></div>
+    <div class="speakers-grid" id="speakers-grid"></div>
+  </div>
+
+  <!-- PARTENAIRES -->
+  <div id="p-partenaires" class="panel">
+    <div class="sec-lbl">Nos partenaires</div>
+    <div id="partners-content"></div>
+  </div>
+
+  <!-- ARTICLES LIVE -->
+  <div id="p-articles" class="panel">
+    <div class="sec-lbl">Fil d'actualité — en direct</div>
+    <button class="pub-btn" onclick="toggleForm()">+ Publier un article</button>
+    <div id="article-form" style="display:none">
+      <div class="article-form">
+        <div class="form-row"><label>Titre</label><input type="text" id="art-title" placeholder="Titre de l'article…"></div>
+        <div class="form-row"><label>Contenu</label><textarea id="art-content" placeholder="Décrivez l'actualité du moment…"></textarea></div>
+        <div class="form-row"><label>Auteur</label><input type="text" id="art-author" placeholder="Votre nom…"></div>
+        <div class="form-actions">
+          <button class="btn-submit" onclick="publishArticle()">Publier</button>
+          <button class="btn-cancel" onclick="toggleForm()">Annuler</button>
+        </div>
+      </div>
+    </div>
+    <div class="articles-feed" id="articles-feed"></div>
+  </div>
+</div>
+
+<script>
+var programme=[
+  {t:'09:00',label:'Accueil & café de bienvenue',desc:'Accueil des adhérents, émargement, remise des badges et café de bienvenue.',type:'pause'},
+  {t:'09:30',label:'Ouverture officielle de l\'AG',desc:'Allocution du Président de la FNDI, présentation de l\'ordre du jour et rappel des règles de vote.',type:'pleniere'},
+  {t:'10:00',label:'Rapport moral et financier',desc:'Présentation du bilan moral de l\'exercice passé par le CA et rapport financier avec approbation des comptes.',type:'pleniere'},
+  {t:'10:45',label:'Table ronde : BIM & avenir du métier',desc:'Échanges sur la montée en compétences BIM/CAO et les enjeux de demain pour les dessinateurs indépendants.',type:'atelier'},
+  {t:'12:00',label:'Déjeuner networking',desc:'Repas en commun, échanges entre adhérents et partenaires dans un cadre convivial.',type:'repas'},
+  {t:'14:00',label:'Ateliers thématiques',desc:'Deux ateliers en parallèle : (A) Assurance décennale & responsabilité / (B) Prospection et développement client.',type:'atelier'},
+  {t:'15:30',label:'Pause café',desc:'Temps de pause et réseautage informel.',type:'pause'},
+  {t:'15:50',label:'Votes & élections',desc:'Vote des résolutions soumises à l\'AG et élections au Conseil d\'Administration si applicable.',type:'pleniere'},
+  {t:'16:45',label:'Présentation des perspectives 2026',desc:'Projets de la fédération pour l\'année à venir : nouveaux partenariats, formations, gazette et rassemblements.',type:'pleniere'},
+  {t:'17:15',label:'Clôture & pot de l\'amitié',desc:'Mot de clôture du Président, remerciements, et pot de l\'amitié pour terminer la journée.',type:'pause'}
+];
+
+var speakers=[
+  {name:'Marie-Laure Fontaine',role:'Présidente FNDI',spec:'Architecture & VRD',tag:'Direction',bio:'Dessinatrice indépendante depuis 15 ans, spécialisée en permis de construire et documents d\'exécution. Présidente élue de la FNDI depuis 2022.',color:'#1a2f4e'},
+  {name:'Julien Mercier',role:'Formateur BIM',spec:'BIM / Revit / AutoCAD',tag:'BIM',bio:'Formateur certifié Revit et ArchiCAD, Julien accompagne les bureaux d\'études dans leur transition BIM depuis 2018. Membre du comité technique FNDI.',color:'#3a7bd5'},
+  {name:'Sophie Arnaud',role:'Avocate associée',spec:'Droit de la construction',tag:'Juridique',bio:'Spécialisée en droit de la construction et assurances. Elle conseille la FNDI sur les questions de responsabilité décennale et de contrats.',color:'#2a7f5b'},
+  {name:'Thomas Leroy',role:'Expert-Comptable',spec:'Fiscalité indépendants',tag:'Gestion',bio:'Expert-comptable dédié aux professionnels libéraux du bâtiment. Présente chaque année le rapport financier de la fédération.',color:'#c07a10'}
+];
+
+var partners=[
+  {name:'Allianz Pro-BTP',domain:'Assurance décennale',category:'principal',url:'https://www.allianz.fr'},
+  {name:'Graitec',domain:'Logiciels CAO / BIM',category:'principal',url:'https://www.graitec.fr'},
+  {name:'MMA',domain:'Assurance RC Pro',category:'principal',url:'https://www.mma.fr'},
+  {name:'Cabinet Dupont & Assoc.',domain:'Droit de la construction',category:'associe',url:''},
+  {name:'Mutuelle Générale',domain:'Mutuelle santé',category:'associe',url:'https://www.mutuellegenerale.fr'},
+  {name:'WebPro Studio',domain:'Webmaster & communication',category:'associe',url:''}
+];
+
+var articles=[
+  {time:'09:35',author:'Bureau FNDI',title:'L\'Assemblée Générale est ouverte !',content:'Le Président Marie-Laure Fontaine a officiellement ouvert l\'AG 2025 devant plus de 80 adhérents réunis à Lyon. L\'ordre du jour a été adopté à l\'unanimité.',live:true},
+  {time:'09:00',author:'Équipe organisation',title:'Accueil en cours — belle participation !',content:'Plus de 75 adhérents sont déjà arrivés pour cette AG 2025. La salle est animée, les échanges vont bon train autour du café de bienvenue. Bonne journée à tous !',live:false}
+];
+
+function hm(t){var p=t.split(':');return parseInt(p[0])*60+parseInt(p[1])}
+function nowMin(){var d=new Date();return d.getHours()*60+d.getMinutes()}
+
+function renderTimeline(){
+  var now=nowMin();
+  var html='';
+  for(var i=0;i<programme.length;i++){
+    var p=programme[i];
+    var next=programme[i+1];
+    var start=hm(p.t);
+    var end=next?hm(next.t):start+60;
+    var isNow=now>=start&&now<end;
+    html+='<div class="tl-item">';
+    html+='<div class="tl-time">'+p.t+'</div>';
+    html+='<div class="tl-dot '+p.type+'"></div>';
+    html+='<div class="tl-card '+p.type+(isNow?' now':'')+'"">';
+    if(isNow)html+='<div class="tl-now-badge">&#9679; En cours</div>';
+    html+='<h3>'+p.label+'</h3>';
+    html+='<p>'+p.desc+'</p>';
+    html+='<span class="tl-tag tag-'+p.type+'">'+({pleniere:'Plénière',pause:'Pause',repas:'Repas',atelier:'Atelier'}[p.type])+'</span>';
+    html+='</div></div>';
+  }
+  document.getElementById('timeline').innerHTML=html;
+}
+
+function getInitials(name){return name.split(' ').map(function(w){return w[0]}).slice(0,2).join('')}
+
+var activeFilter='Tous';
+function renderSpeakers(){
+  var tags=['Tous','Direction','BIM','Juridique','Gestion'];
+  var fhtml=tags.map(function(t){return'<button class="filt-btn'+(activeFilter===t?' active':'')+'" onclick="filterSpeakers(\''+t+'\')">'+t+'</button>'}).join('');
+  document.getElementById('filters').innerHTML=fhtml;
+  var filtered=activeFilter==='Tous'?speakers:speakers.filter(function(s){return s.tag===activeFilter});
+  var html=filtered.map(function(s){
+    return'<div class="spk-card"><div class="spk-avatar" style="background:'+s.color+'">'+getInitials(s.name)+'</div><div class="spk-name">'+s.name+'</div><div class="spk-role">'+s.role+'</div><div class="spk-spec">'+s.spec+'</div><p class="spk-bio">'+s.bio+'</p><span class="spk-tag">'+s.tag+'</span></div>';
+  }).join('');
+  document.getElementById('speakers-grid').innerHTML=html;
+}
+
+function filterSpeakers(t){activeFilter=t;renderSpeakers()}
+
+function renderPartners(){
+  var princ=partners.filter(function(p){return p.category==='principal'});
+  var asso=partners.filter(function(p){return p.category==='associe'});
+  function cards(list){return list.map(function(p){
+    var initials=p.name.split(' ').map(function(w){return w[0]}).join('').substring(0,3);
+    return'<div class="partner-card">'+(p.category==='principal'?'<div class="badge-principal">Partenaire principal</div>':'')+'<div class="partner-logo">'+initials+'</div><div class="partner-name">'+p.name+'</div><div class="partner-domain">'+p.domain+'</div>'+(p.url?'<a href="'+p.url+'" class="partner-link" target="_blank">Visiter &#8599;</a>':'')+'</div>';
+  }).join('')}
+  document.getElementById('partners-content').innerHTML=
+    '<div class="partners-section"><h3>Partenaires principaux</h3><div class="partners-grid">'+cards(princ)+'</div></div>'+
+    '<div class="partners-section"><h3>Partenaires associés</h3><div class="partners-grid">'+cards(asso)+'</div></div>';
+}
+
+function renderArticles(){
+  if(!articles.length){
+    document.getElementById('articles-feed').innerHTML='<div class="empty-state"><div class="empty-icon">&#128240;</div>Aucun article publié pour le moment.<br>Soyez le premier à partager l\'actualité de l\'AG !</div>';
+    return;
+  }
+  var html=articles.map(function(a){
+    return'<div class="article-card"><div class="art-meta"><span class="art-time">'+a.time+'</span><span class="art-author">'+a.author+'</span>'+(a.live?'<span class="live-badge">Live</span>':'')+'</div><h3>'+a.title+'</h3><p>'+a.content+'</p></div>';
+  }).join('');
+  document.getElementById('articles-feed').innerHTML=html;
+}
+
+function toggleForm(){
+  var f=document.getElementById('article-form');
+  f.style.display=f.style.display==='none'?'block':'none';
+}
+
+function publishArticle(){
+  var title=document.getElementById('art-title').value.trim();
+  var content=document.getElementById('art-content').value.trim();
+  var author=document.getElementById('art-author').value.trim()||'Adhérent FNDI';
+  if(!title||!content)return;
+  var now=new Date();
+  var t=String(now.getHours()).padStart(2,'0')+':'+String(now.getMinutes()).padStart(2,'0');
+  articles.unshift({time:t,author:author,title:title,content:content,live:true});
+  document.getElementById('art-title').value='';
+  document.getElementById('art-content').value='';
+  document.getElementById('art-author').value='';
+  toggleForm();
+  renderArticles();
+}
+
+function showTab(id){
+  document.querySelectorAll('.panel').forEach(function(p){p.classList.remove('active')});
+  document.querySelectorAll('.tab').forEach(function(t){t.classList.remove('active')});
+  document.getElementById('p-'+id).classList.add('active');
+  event.target.classList.add('active');
+}
+
+renderTimeline();
+renderSpeakers();
+renderPartners();
+renderArticles();
+setInterval(renderTimeline,60000);
+</script>
